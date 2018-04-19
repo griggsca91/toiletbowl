@@ -19,5 +19,8 @@ run-dev: main
 frontend:
 	./node_modules/.bin/webpack
 
+init-db:
+	createuser --createdb --createrole --superuser --replication renameuser;
+
 clean:
 	rm main
