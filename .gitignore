@@ -1,0 +1,32 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Logfiles
+*.txt
+
+# Executable
+main
+
+# Vendor folder
+/vendor/*/**
+/logs
+/deletedLogs
+
+# Dependency directories
+node_modules/
+
+# editor specific crap
+.vscode
+
+# no build files
+public/build/
