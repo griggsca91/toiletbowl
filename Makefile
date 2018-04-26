@@ -25,6 +25,5 @@ init-db:
 main: $(go-files)
 	go build -o main
 
-
 clean:
 	rm main
