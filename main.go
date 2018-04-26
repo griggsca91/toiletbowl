@@ -6,9 +6,9 @@ import (
 	"html/template"
 	"io"
 	"log"
-	"money/rename"
 	"net/http"
 	"os"
+	"rename/rename"
 	"strings"
 
 	"github.com/labstack/echo"
@@ -54,6 +54,12 @@ func main() {
 	}
 	// Routes
 	e.GET("/", indexHandler)
+
+	// API
+	g := e.Group("/api")
+	{
+		g.GET("/tables", rename.APITablesHandler)
+	}
 
 	rename.InitDB()
 	e.Logger.SetOutput(os.Stdout)

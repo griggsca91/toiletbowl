@@ -22,5 +22,9 @@ frontend:
 init-db:
 	createuser --createdb --createrole --superuser --replication renameuser;
 
+main: $(go-files)
+	go build -o main
+
+
 clean:
 	rm main
