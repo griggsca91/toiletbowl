@@ -2,14 +2,24 @@ package rename
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 
 	_ "github.com/lib/pq"
 )
 
+const (
+	databaseUser = "postgres"
+	database     = "rename"
+	password     = "password"
+)
+
+var (
+	pool *sql.DB
+)
+
 func GetTables() []string {
 	db := GetDB()
-	defer db.Close()
 
 	rows, err := db.Query("SHOW TABLES")
 	if err != nil {
@@ -30,18 +40,22 @@ func GetTables() []string {
 }
 
 func GetDB() *sql.DB {
-	connStr := "postgresql://bruh@localhost:26257/logfather?sslmode=disable"
-	db, err := sql.Open("postgres", connStr)
-	if err != nil {
-		log.Fatal(err)
+	if pool == nil {
+		connStr := fmt.Sprintf("postgresql://%s@localhost:5432/%s"+
+			"?sslmode=disable"+
+			"&password=%s",
+			databaseUser, database, password)
+		pool, err := sql.Open("postgres", connStr)
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 
-	return db
+	return pool
 }
 
 func InitDB() {
 	db := GetDB()
-	defer db.Close()
 	logTableSQL := `CREATE TABLE IF NOT EXISTS logfather.logs (
 		id serial PRIMARY KEY, 
 		message TEXT,
