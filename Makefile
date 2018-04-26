@@ -10,19 +10,22 @@ run: main
 get-libraries:
 	dep ensure
 
-watch:
+watch: install-frontend
 	./node_modules/.bin/webpack -d --watch
 
-run-dev: main
+run-dev: get-libraries frontend main
 	go run -x main.go --port=3000 
 
-frontend:
+frontend: install-frontend
 	./node_modules/.bin/webpack
 
 init-db:
 	createuser --createdb --createrole --superuser --replication renameuser;
 
-main: $(go-files)
+install-frontend: package.json
+	npm i
+
+main:  $(go-files)
 	go build -o main
 
 clean:

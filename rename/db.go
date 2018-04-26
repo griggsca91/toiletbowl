@@ -45,7 +45,8 @@ func GetDB() *sql.DB {
 			"?sslmode=disable"+
 			"&password=%s",
 			databaseUser, database, password)
-		pool, err := sql.Open("postgres", connStr)
+		var err error
+		pool, err = sql.Open("postgres", connStr)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -56,7 +57,7 @@ func GetDB() *sql.DB {
 
 func InitDB() {
 	db := GetDB()
-	logTableSQL := `CREATE TABLE IF NOT EXISTS logfather.logs (
+	logTableSQL := `CREATE TABLE IF NOT EXISTS logs (
 		id serial PRIMARY KEY, 
 		message TEXT,
 		file_name TEXT,
