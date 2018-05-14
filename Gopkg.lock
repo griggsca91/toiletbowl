@@ -8,6 +8,27 @@
   version = "v3.2.0"
 
 [[projects]]
+  name = "github.com/gorilla/websocket"
+  packages = ["."]
+  revision = "ea4d1f681babbce9545c9c5f3d5194a789c89f5b"
+  version = "v1.2.0"
+
+[[projects]]
+  name = "github.com/jinzhu/gorm"
+  packages = [
+    ".",
+    "dialects/postgres"
+  ]
+  revision = "6ed508ec6a4ecb3531899a69cbc746ccf65a4166"
+  version = "v1.9.1"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/jinzhu/inflection"
+  packages = ["."]
+  revision = "04140366298a54a039076d798123ffa108fff46c"
+
+[[projects]]
   name = "github.com/labstack/echo"
   packages = [
     ".",
@@ -32,6 +53,7 @@
   name = "github.com/lib/pq"
   packages = [
     ".",
+    "hstore",
     "oid"
   ]
   revision = "d34b9ff171c21ad295489235aec8b6626023cd04"
@@ -78,6 +100,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "b3c418f574f5659255f8eac27978a94489cec9a4863d8017197226aed0d56930"
+  inputs-digest = "c1ab2b4c304902938b7b57ffd4277c1e280b2e3a98d5e5a7f5c248877443f77a"
   solver-name = "gps-cdcl"
   solver-version = 1

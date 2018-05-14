@@ -8,8 +8,8 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"rename/rename"
 	"strings"
+	"toiletbowl/toiletbowl"
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
@@ -58,10 +58,11 @@ func main() {
 	// API
 	g := e.Group("/api")
 	{
-		g.GET("/tables", rename.APITablesHandler)
+		g.POST("/poo", toiletbowl.APICreatePoo)
+		g.GET("/poos", toiletbowl.APIGetPoos)
 	}
 
-	rename.InitDB()
+	toiletbowl.InitDB()
 	e.Logger.SetOutput(os.Stdout)
 	// Lets start this bad boi
 	e.Logger.Fatal(e.Start(port))

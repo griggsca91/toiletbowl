@@ -1,4 +1,4 @@
-go-files = ./rename/db.go \
+go-files = ./toiletbowl/db.go \
 			main.go
 
 build: get-libraries main frontend
@@ -20,7 +20,16 @@ frontend: install-frontend
 	./node_modules/.bin/webpack
 
 init-db:
-	createuser --createdb --createrole --superuser --replication renameuser;
+	CREATE USER toiletbowl
+		WITH
+			SUPERUSER
+			CREATEDB
+			CREATEROLE
+			LOGIN
+			PASSWORD 'password';
+
+	createdb toiletbowl;
+	alter user toiletbowl with encrypted password 'password';
 
 install-frontend: package.json
 	npm i
